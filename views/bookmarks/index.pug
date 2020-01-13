@@ -3,7 +3,11 @@ extends ../layout
 block content
     .container
         h1 Collection
-
+        .input-group
+            input(type='url')
+            .input-group-append
+                a.btn.btn-primary
+                    i.fas.fa-plus.text-white
         each bookmark in bookmarks
             h2= bookmark.title
             a(href=bookmark.url)= bookmark.url
