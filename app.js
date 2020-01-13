@@ -4,11 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var helmet = require('helmet');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var bookmarksRouter = require('./routes/bookmarks');
 
+mongoose.connect('mongodb://127.0.0.1:27017/bookmarkstore');
 var app = express();
 
 // view engine setup
