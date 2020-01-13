@@ -1,4 +1,9 @@
 extends ../layout
 
 block content
-    h1 Here is the bookmarks index
+    h1 Collection
+
+    each bookmark in bookmarks
+        h2= bookmark.title
+        a(href=bookmark.url)= bookmark.url
+        p= bookmark.description
