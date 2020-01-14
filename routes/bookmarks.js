@@ -4,27 +4,6 @@ const mongoose = require('mongoose');
 
 const Bookmark = require('../models/bookmark');
 
-const bookmarks = [
-    {
-        id: 1,
-        title: "test bookmark 1",
-        url: "https://duckduckgo.com",
-        description: "A private search engine"
-    },
-    {
-        id: 2,
-        title: "test bookmark 2",
-        url: "https://duckduckgo.com",
-        description: "A private search engine"
-    },
-    {
-        id: 3,
-        title: "test bookmark 3",
-        url: "https://duckduckgo.com",
-        description: "A private search engine"
-    },
-];
-
 /* GET bookmarks listing. */
 router.get('/', async function(req, res, next) {
     const bookmarks = await Bookmark.find();
