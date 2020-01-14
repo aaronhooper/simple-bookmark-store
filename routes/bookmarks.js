@@ -10,8 +10,8 @@ router.get('/', async function(req, res, next) {
     res.render('bookmarks/index', { bookmarks });
 });
 
-router.get('/:id', function(req, res, next) {
-    const bookmark = bookmarks.filter(bookmark => bookmark.id == req.params.id)[0];
+router.get('/:id', async function(req, res, next) {
+    const bookmark = await Bookmark.findById(req.params.id);
     res.render('bookmarks/bookmark', { bookmark });
 });
 
