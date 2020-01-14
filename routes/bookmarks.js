@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+const mongoose = require('mongoose');
+
+const Bookmark = require('../models/bookmark');
 
 const bookmarks = [
     {
@@ -23,8 +26,9 @@ const bookmarks = [
 ];
 
 /* GET bookmarks listing. */
-router.get('/', function(req, res, next) {
-  res.render('bookmarks/index', { bookmarks });
+router.get('/', async function(req, res, next) {
+    const bookmarks = await Bookmark.find();
+    res.render('bookmarks/index', { bookmarks });
 });
 
 router.get('/:id', function(req, res, next) {
