@@ -10,7 +10,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var bookmarksRouter = require('./routes/bookmarks');
 
-mongoose.connect('mongodb://127.0.0.1:27017/bookmarkstore');
+mongoose.connect('mongodb://127.0.0.1:27017/bookmarkstore', {
+  user: process.env.DB_USER,
+  pass: process.env.DB_PASS
+});
+
 var app = express();
 
 // view engine setup
