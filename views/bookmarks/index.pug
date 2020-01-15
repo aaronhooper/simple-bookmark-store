@@ -10,8 +10,10 @@ block content
                     button.btn.btn-primary
                         i.fas.fa-plus.text-white
         each bookmark in bookmarks
-            h2= bookmark.title
-            a(href=bookmark.editUrl title='Edit').mr-1.text-secondary
-                i.fas.fa-edit
-            a(href=bookmark.url)= bookmark.url
-            p= bookmark.description
+            .card.w-75.p-1.m-2
+                .card-body
+                    h2.card-title= bookmark.title
+                    a(href=bookmark.editUrl title='Edit').card-subtitle.mr-1.text-secondary
+                        i.fas.fa-edit
+                    a(href=bookmark.url)= bookmark.url
+                    p.card-text= bookmark.description
