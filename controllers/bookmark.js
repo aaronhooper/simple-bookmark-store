@@ -20,6 +20,7 @@ const createBookmark = async function (req, res, next) {
         const description = $('meta[name="description"]').attr('content') || 'No description.';
         const bookmark = new Bookmark({
             _id: new mongoose.Types.ObjectId(),
+            date: Date.now(),
             url,
             title,
             description,
@@ -32,7 +33,7 @@ const createBookmark = async function (req, res, next) {
 }
 
 const readBookmarks = async function (req, res, next) {
-    const bookmarks = await Bookmark.find();
+    const bookmarks = await Bookmark.find().sort([['date', -1]]);
 
     if (bookmarks) {
         bookmarks.map(addEditUrl(req.baseUrl));
