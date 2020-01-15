@@ -13,7 +13,7 @@ block content
             .card.w-75.p-1.my-2
                 .card-body
                     h2.card-title= bookmark.title
-                    a(href=bookmark.editUrl title='Edit').card-subtitle.mr-1.text-secondary
-                        i.fas.fa-edit
                     a(href=bookmark.url)= bookmark.url
+                    a(href=bookmark.editUrl title='Edit').card-subtitle.ml-1.text-secondary
+                        i.fas.fa-edit
                     p.card-text= bookmark.description
