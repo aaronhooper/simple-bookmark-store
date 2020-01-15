@@ -4,6 +4,13 @@ const cheerio = require('cheerio');
 
 const Bookmark = require('../models/bookmark');
 
+const addEditUrl = function (baseUrl) {
+    return function (obj) {
+        obj['editUrl'] = baseUrl + '/' + obj._id.toString();
+        return obj;
+    };
+}
+
 const createBookmark = async function (req, res, next) {
     try {
         const url = req.body.url;
@@ -21,6 +28,11 @@ const createBookmark = async function (req, res, next) {
 
 const readBookmarks = async function (req, res, next) {
     const bookmarks = await Bookmark.find();
+
+    if (bookmarks) {
+        bookmarks.map(addEditUrl(req.baseUrl));
+    }
+
     res.render('bookmarks/index', { bookmarks });
 }
 
