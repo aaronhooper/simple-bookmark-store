@@ -18,7 +18,12 @@ const createBookmark = async function (req, res, next) {
         const $ = cheerio.load(response);
         const title = $('title').text() || 'Untitled';
         const description = $('meta[name="description]"').text() || 'No description.';
-        const bookmark = new Bookmark({ url, title, description });
+        const bookmark = new Bookmark({
+            _id: new mongoose.Types.ObjectId(),
+            url,
+            title,
+            description,
+        });
         await bookmark.save();
         res.redirect('/bookmarks');
     } catch (e) {
