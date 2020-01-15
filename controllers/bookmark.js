@@ -14,10 +14,10 @@ const addEditUrl = function (baseUrl) {
 const createBookmark = async function (req, res, next) {
     try {
         const url = req.body.url;
-        const response = await axios.get(req.params.url);
-        const $ = cheerio.load(response);
+        const response = await axios.get(url);
+        const $ = cheerio.load(response.data);
         const title = $('title').text() || 'Untitled';
-        const description = $('meta[name="description]"').text() || 'No description.';
+        const description = $('meta[name="description"]').attr('content') || 'No description.';
         const bookmark = new Bookmark({
             _id: new mongoose.Types.ObjectId(),
             url,
