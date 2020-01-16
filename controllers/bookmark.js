@@ -2,14 +2,12 @@ const mongoose = require('mongoose');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const Bookmark = require('../models/bookmark');
+const {
+    addEditUrl,
 
-const addEditUrl = function (baseUrl) {
-    return function (obj) {
-        obj['editUrl'] = baseUrl + '/' + obj._id.toString();
-        return obj;
-    };
-}
+} = require('../helpers');
+
+const Bookmark = require('../models/bookmark');
 
 const createBookmark = async function (req, res, next) {
     try {
