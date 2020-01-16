@@ -1,10 +1,14 @@
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var helmet = require('helmet');
 var mongoose = require('mongoose');
+
+var {
+    path,
+
+} = require('./helpers');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -19,7 +23,7 @@ mongoose.connect(process.env.DB_URI, {
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path('views'));
 app.set('view engine', 'pug');
 
 // middleware
@@ -30,9 +34,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // static paths
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/vendor/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap')));
-app.use('/vendor/fontawesome-free', express.static(path.join(__dirname, 'node_modules/@fortawesome/fontawesome-free')));
+app.use(path('public'));
+app.use('/vendor/bootstrap', path('node_modules/bootstrap'));
+app.use('/vendor/fontawesome-free', path('node_modules/@fortawesome/fontawesome-free'));
 
 // routes
 app.use('/', indexRouter);
