@@ -1,14 +1,11 @@
 var express = require('express');
-var router = express.Router();
 const mongoose = require('mongoose');
+var router = express.Router();
 
 const bookmark = require('../controllers/bookmark');
 
-/* GET bookmarks listing. */
-router.get('/', bookmark.readBookmarks);
-
 router.post('/', bookmark.createBookmark);
-
+router.get('/', bookmark.readBookmarks);
 router.get('/:id', bookmark.readBookmark);
 
 module.exports = router;
