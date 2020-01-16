@@ -1,5 +1,5 @@
 const express = require('express');
-var path = require('path');
+var pathModule = require('path');
 
 function addEditUrl(baseUrl) {
     return function (obj) {
@@ -8,7 +8,7 @@ function addEditUrl(baseUrl) {
     }
 }
 
-const path = inputPath => express.static(path.join(__dirname, inputPath));
+const path = inputPath => express.static(pathModule.join(__dirname, inputPath));
 
 module.exports = {
     addEditUrl,
