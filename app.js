@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var helmet = require('helmet');
 var mongoose = require('mongoose');
+var { join } = require('path');
 
 var {
     path,
@@ -23,7 +24,7 @@ mongoose.connect(process.env.DB_URI, {
 var app = express();
 
 // view engine setup
-app.set('views', path('views'));
+app.set('views', join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 // middleware
