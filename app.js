@@ -11,7 +11,7 @@ var {
 
 } = require('./helpers');
 
-var indexRouter = require('./routes/index');
+var indexRouter = require('./routes');
 
 // database
 mongoose.connect(process.env.DB_URI, {
