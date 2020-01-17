@@ -7,7 +7,7 @@ router.use('/users', usersRouter);
 router.use('/bookmarks', bookmarksRouter);
 
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+    res.redirect('/bookmarks');
 });
 
 module.exports = router;
