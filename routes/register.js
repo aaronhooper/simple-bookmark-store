@@ -9,11 +9,21 @@ router.post('/', function (req, res, next) {
     const { firstName, username, password, confirmPassword } = req.body;
     const errors = [];
 
-    if (username.length < 3 || username.length > 15) {
+    if (typeof firstName === 'undefined') {
+        errors.push({ message: 'First name field must not be empty.' });
+    }
+
+    if (typeof username === 'undefined') {
+        errors.push({ message: 'Username field must not be empty.' });
+
+    } else if (username.length < 3 || username.length > 15) {
         errors.push({ message: 'Username must be between 3 and 15 characters.' });
     }
 
-    if (password !== confirmPassword) {
+    if (typeof password === 'undefined' || typeof confirmPassword === 'undefined') {
+        errors.push({ message: 'Password must be entered twice.' });
+
+    } else if (password !== confirmPassword) {
         errors.push({ message: 'Password and confirmed password must match.' });
     
     } else if (password.length < 8 || password.length > 30) {
