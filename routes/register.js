@@ -1,33 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var { validationResult } = require('express-validator');
 
-var {
-    body,
-    validationResult,
-
-} = require('express-validator');
+var users = require('../controllers/users');
 
 router.get('/', function(req, res, next) {
     res.render('register');
 });
 
-router.post('/', [
-    body('firstName')
-        .exists(),
-
-    body('username', 'Username must be between 3 and 15 characters.')
-        .exists()
-        .isLength({ min: 3, max: 15 }),
-
-    body('password', 'Password must be between 8 and 32 characters.')
-        .exists()
-        .isLength({ min: 8, max: 32 }),
-
-    body('confirmPassword', 'Password fields must match.')
-        .exists()
-        .custom((value, { req }) => value === req.body.password),
-
-], function (req, res, next) {
+router.post('/', users.validate(), function (req, res, next) {
     const result = validationResult(req);
     
     if (result.isEmpty()) {
