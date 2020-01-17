@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/vendor/fontawesome-free/css/fontawesome.min.css')
+    link(rel='stylesheet', href='/vendor/fontawesome-free/css/brands.min.css')
+    link(rel='stylesheet', href='/vendor/fontawesome-free/css/solid.min.css')
+    link(rel='stylesheet', href='/public/stylesheets/style.css')
+  body
+    nav.navbar.navbar-dark.bg-dark
+        .container
+            a.navbar-brand Simple Bookmark Store
+    .container
+        .row
+            .col-sm-4.mx-auto.mt-5.text-center
+                form.form-signin(method="POST")
+                    h1.h3.mb-3.font-weight-normal Register
+                    input.form-control.mb-2(type="text" placeholder="First name" name="firstName" required autofocus)
+                    input.form-control.mb-2(type="text" placeholder="Username" name="username" required)
+                    input.form-control.mb-2(type="password" placeholder="Password" name="password" required)
+                    input.form-control.mb-2(type="password" placeholder="Confirm password" name="confirmPassword" required)
+                    button.btn.btn-large.btn-primary.btn-block(type="submit") Register
