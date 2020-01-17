@@ -2,10 +2,10 @@ var express = require('express');
 const mongoose = require('mongoose');
 var router = express.Router();
 
-const bookmark = require('../controllers/bookmark');
+const bookmarks = require('../controllers/bookmarks');
 
-router.post('/', bookmark.createBookmark);
-router.get('/', bookmark.readBookmarks);
-router.get('/:id', bookmark.readBookmark);
+router.post('/', bookmarks.createBookmark);
+router.get('/', bookmarks.readBookmarks);
+router.get('/:id', bookmarks.readBookmark);
 
 module.exports = router;
