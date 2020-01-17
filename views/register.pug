@@ -16,9 +16,9 @@ html
             .col-sm-4.mx-auto.mt-5.text-center
                 h1.h3.mb-3.font-weight-normal Register
 
-                if typeof errors !== 'undefined'
-                    each error in errors
-                        .alert.alert-warning(role="alert")= error.message
+                if typeof result !== 'undefined'
+                    each error in result.errors
+                        .alert.alert-warning(role="alert")= error.msg
 
                 form.form-signin(method="POST")
                     input.form-control.mb-2(type="text" placeholder="First name" name="firstName" required autofocus)

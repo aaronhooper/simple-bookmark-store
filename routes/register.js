@@ -1,41 +1,41 @@
 var express = require('express');
 var router = express.Router();
 
+var {
+    body,
+    validationResult,
+
+} = require('express-validator');
+
 router.get('/', function(req, res, next) {
     res.render('register');
 });
 
-router.post('/', function (req, res, next) {
-    const { firstName, username, password, confirmPassword } = req.body;
-    const errors = [];
+router.post('/', [
+    body('firstName')
+        .exists(),
 
-    if (typeof firstName === 'undefined') {
-        errors.push({ message: 'First name field must not be empty.' });
-    }
+    body('username', 'Username must be between 3 and 15 characters.')
+        .exists()
+        .isLength({ min: 3, max: 15 }),
 
-    if (typeof username === 'undefined') {
-        errors.push({ message: 'Username field must not be empty.' });
+    body('password', 'Password must be between 8 and 32 characters.')
+        .exists()
+        .isLength({ min: 8, max: 32 }),
 
-    } else if (username.length < 3 || username.length > 15) {
-        errors.push({ message: 'Username must be between 3 and 15 characters.' });
-    }
+    body('confirmPassword', 'Password fields must match.')
+        .exists()
+        .custom((value, { req }) => value === req.body.password),
 
-    if (typeof password === 'undefined' || typeof confirmPassword === 'undefined') {
-        errors.push({ message: 'Password must be entered twice.' });
-
-    } else if (password !== confirmPassword) {
-        errors.push({ message: 'Password and confirmed password must match.' });
+], function (req, res, next) {
+    const result = validationResult(req);
     
-    } else if (password.length < 8 || password.length > 30) {
-        errors.push({ message: 'Password must be between 8 and 30 characters.' });
-    }
-    
-    if (!errors.length) {
+    if (result.isEmpty()) {
         res.send('Add the user to the database!');
     } else {
-        res.render('register', { errors });
+        console.log(result);
+        res.render('register', { result });
     }
-
 });
 
 module.exports = router;
