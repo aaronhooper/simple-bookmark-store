@@ -12,8 +12,6 @@ var {
 } = require('./helpers');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var bookmarksRouter = require('./routes/bookmarks');
 
 // database
 mongoose.connect(process.env.DB_URI, {
@@ -39,10 +37,8 @@ app.use(path('public'));
 app.use('/vendor/bootstrap', path('node_modules/bootstrap'));
 app.use('/vendor/fontawesome-free', path('node_modules/@fortawesome/fontawesome-free'));
 
-// routes
+// index route
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/bookmarks', bookmarksRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
