@@ -14,8 +14,13 @@ html
     .container
         .row
             .col-sm-4.mx-auto.mt-5.text-center
+                h1.h3.mb-3.font-weight-normal Register
+
+                if typeof errors !== 'undefined'
+                    each error in errors
+                        .alert.alert-warning(role="alert")= error.message
+
                 form.form-signin(method="POST")
-                    h1.h3.mb-3.font-weight-normal Register
                     input.form-control.mb-2(type="text" placeholder="First name" name="firstName" required autofocus)
                     input.form-control.mb-2(type="text" placeholder="Username" name="username" required)
                     input.form-control.mb-2(type="password" placeholder="Password" name="password" required)

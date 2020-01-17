@@ -21,7 +21,7 @@ router.post('/', function (req, res, next) {
     }
     
     if (!errors.length) {
-        res.send('No errors! All is good :)');
+        res.send('Add the user to the database!');
     } else {
         res.render('register', { errors });
     }
