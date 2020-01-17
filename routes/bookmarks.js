@@ -4,8 +4,8 @@ var router = express.Router();
 
 const bookmarks = require('../controllers/bookmarks');
 
-router.post('/', bookmarks.createBookmark);
-router.get('/', bookmarks.readBookmarks);
-router.get('/:id', bookmarks.readBookmark);
+router.post('/', bookmarks.create);
+router.get('/', bookmarks.readAll);
+router.get('/:id', bookmarks.readOne);
 
 module.exports = router;
