@@ -18,7 +18,6 @@ const createBookmark = async function (req, res, next) {
         const description = $('meta[name="description"]').attr('content') || 'No description.';
 
         const bookmark = new Bookmark({
-            _id: new mongoose.Types.ObjectId(),
             date: Date.now(),
             url,
             title,
