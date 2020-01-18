@@ -1,4 +1,4 @@
-const { body } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 const User = require('../models/user');
 
 const validate = function () {
@@ -20,6 +20,17 @@ const validate = function () {
     ];
 };
 
+const create = function (req, res, next) {
+    const result = validationResult(req);
+
+    if (result.isEmpty()) {
+        res.send('Add the user to the database!');
+    } else {
+        res.render('register', { result });
+    }
+}
+
 module.exports = {
     validate,
+    create,
 };
