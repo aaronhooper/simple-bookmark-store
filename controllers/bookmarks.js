@@ -25,7 +25,7 @@ const create = async function (req, res, next) {
         });
 
         await bookmark.save();
-        res.redirect('/bookmarks');
+        next();
     } catch (e) {
         next(e);
     }
