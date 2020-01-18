@@ -20,11 +20,22 @@ const validate = function () {
     ];
 };
 
-const create = function (req, res, next) {
+const create = async function (req, res, next) {
     const result = validationResult(req);
 
     if (result.isEmpty()) {
-        res.send('Add the user to the database!');
+        const user = new User({
+            username: req.body.username,
+            firstName: req.body.firstName,
+            password: req.body.password,
+        });
+
+        try {
+            await user.save();
+            next();
+        } catch (e) {
+            next(e);
+        }
     } else {
         res.render('register', { result });
     }
