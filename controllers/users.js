@@ -6,17 +6,20 @@ const validate = function () {
         body('firstName')
             .notEmpty(),
 
-        body('username', 'Username must be between 3 and 15 characters.')
+        body('username')
             .notEmpty()
-            .isLength({ min: 3, max: 15 }),
+            .isLength({ min: 3, max: 15 })
+            .withMessage('Username must be between 3 and 15 characters.'),
 
-        body('password', 'Password must be between 8 and 32 characters.')
+        body('password')
             .notEmpty()
-            .isLength({ min: 8, max: 32 }),
+            .isLength({ min: 8, max: 32 })
+            .withMessage('Password must be between 8 and 32 characters.'),
 
-        body('confirmPassword', 'Password fields must match.')
+        body('confirmPassword')
             .notEmpty()
-            .custom((value, { req }) => value === req.body.password),
+            .custom((value, { req }) => value === req.body.password)
+            .withMessage('Password fields must match.'),
     ];
 };
 
