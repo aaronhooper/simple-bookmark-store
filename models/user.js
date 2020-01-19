@@ -21,6 +21,7 @@ const userSchema = mongoose.Schema({
     },
 });
 
+// throws ValidationError when unique constraint is violated
 userSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('User', userSchema);
