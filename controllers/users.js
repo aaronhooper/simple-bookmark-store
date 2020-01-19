@@ -37,9 +37,17 @@ const create = async function (req, res, next) {
             await user.save();
             next();
         } catch (e) {
-            next(e);
+            if (e.name === 'ValidationError') {
+                res.render('register', {
+                    validationError: { message: 'Username already exists.' }
+                });
+            } else {
+                // unknown error, forward to handler
+                next(e);
+            }
         }
     } else {
+        // render with express-validator errors
         res.render('register', { result });
     }
 }
