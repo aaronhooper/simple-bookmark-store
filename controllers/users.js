@@ -1,4 +1,7 @@
 const { body, validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
+const SALT_ROUNDS = 10;
+
 const User = require('../models/user');
 
 const validate = function () {
@@ -27,10 +30,13 @@ const create = async function (req, res, next) {
     const result = validationResult(req);
 
     if (result.isEmpty()) {
+        const plaintext = req.body.password;
+        const hash = await bcrypt.hash(plaintext, SALT_ROUNDS);
+
         const user = new User({
             username: req.body.username,
             firstName: req.body.firstName,
-            password: req.body.password,
+            password: hash,
         });
 
         try {
