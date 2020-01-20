@@ -1,6 +1,5 @@
 var createError = require('http-errors');
 var express = require('express');
-var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var helmet = require('helmet');
 var mongoose = require('mongoose');
@@ -30,7 +29,6 @@ app.use(helmet());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
 // static paths
 app.use(path('public'));
