@@ -5,6 +5,7 @@ var helmet = require('helmet');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
+var flash = require('express-flash')
 var { join } = require('path');
 
 var {
@@ -34,6 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // static paths
 app.use(path('public'));
