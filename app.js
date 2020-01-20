@@ -3,6 +3,8 @@ var express = require('express');
 var logger = require('morgan');
 var helmet = require('helmet');
 var mongoose = require('mongoose');
+var session = require('express-session');
+var passport = require('passport');
 var { join } = require('path');
 
 var {
@@ -26,9 +28,12 @@ app.set('view engine', 'pug');
 
 // middleware
 app.use(helmet());
+app.use(session({ secret: 'cats' }));  // TODO: add key from environment
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // static paths
 app.use(path('public'));
