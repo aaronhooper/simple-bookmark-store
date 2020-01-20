@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/vendor/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/vendor/fontawesome-free/css/fontawesome.min.css')
+    link(rel='stylesheet', href='/vendor/fontawesome-free/css/brands.min.css')
+    link(rel='stylesheet', href='/vendor/fontawesome-free/css/solid.min.css')
+    link(rel='stylesheet', href='/public/stylesheets/style.css')
+  body
+    nav.navbar.navbar-dark.bg-dark
+        .container
+            //- TODO: extract nav and head into partials
+            a.navbar-brand Simple Bookmark Store
+    .container
+        .row
+            .col-sm-4.mx-auto.mt-5.text-center
+                h1.h3.mb-3.font-weight-normal Sign In
+
+                //- if typeof result !== 'undefined'
+                //-     //- validation checks did not pass
+                //-     each error in result.errors
+                //-         .alert.alert-warning(role="alert")= error.msg
+
+                //- if typeof validationError !== 'undefined'
+                //-     //- username is already in database
+                //-     .alert.alert-warning(role="alert")= validationError.message
+
+                form.form-signin(method="POST")
+                    input.form-control.mb-2(type="text" placeholder="Username" name="username" required autofocus)
+                    input.form-control.mb-2(type="password" placeholder="Password" name="password" required)
+                    button.btn.btn-large.btn-primary.btn-block(type="submit") Sign In
