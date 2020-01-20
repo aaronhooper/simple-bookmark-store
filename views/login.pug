@@ -17,14 +17,8 @@ html
             .col-sm-4.mx-auto.mt-5.text-center
                 h1.h3.mb-3.font-weight-normal Sign In
 
-                //- if typeof result !== 'undefined'
-                //-     //- validation checks did not pass
-                //-     each error in result.errors
-                //-         .alert.alert-warning(role="alert")= error.msg
-
-                //- if typeof validationError !== 'undefined'
-                //-     //- username is already in database
-                //-     .alert.alert-warning(role="alert")= validationError.message
+                if messages.error
+                    .alert.alert-warning(role="alert")= messages.error
 
                 form.form-signin(method="POST")
                     input.form-control.mb-2(type="text" placeholder="Username" name="username" required autofocus)
