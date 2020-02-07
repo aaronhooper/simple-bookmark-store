@@ -8,7 +8,7 @@ const {
 
 const Bookmark = require('../models/bookmark');
 
-const create = async function (req, res, next) {
+exports.create = async function (req, res, next) {
     try {
         const url = req.body.url;
         const response = await axios.get(url);
@@ -30,7 +30,7 @@ const create = async function (req, res, next) {
     }
 }
 
-const readAll = async function (req, res, next) {
+exports.readAll = async function (req, res, next) {
     const bookmarks = await Bookmark.find().sort([['date', -1]]);
 
     if (bookmarks) {
@@ -40,14 +40,8 @@ const readAll = async function (req, res, next) {
     res.render('bookmarks/index', { bookmarks });
 }
 
-const readOne = async function (req, res, next) {
+exports.readOne = async function (req, res, next) {
     const id = req.params.id;
     const bookmark = await Bookmark.findById(id);
     res.render('bookmarks/bookmark', { bookmark });
 }
-
-module.exports = {
-    create,
-    readAll,
-    readOne,
-};

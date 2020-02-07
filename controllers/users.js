@@ -4,7 +4,7 @@ const SALT_ROUNDS = 10;
 
 const User = require('../models/user');
 
-const validate = function () {
+exports.validate = function () {
     return [
         body('firstName')
             .notEmpty(),
@@ -26,7 +26,7 @@ const validate = function () {
     ];
 };
 
-const create = async function (req, res, next) {
+exports.create = async function (req, res, next) {
     const result = validationResult(req);
 
     if (result.isEmpty()) {
@@ -57,8 +57,3 @@ const create = async function (req, res, next) {
         res.render('register', { result });
     }
 }
-
-module.exports = {
-    validate,
-    create,
-};
