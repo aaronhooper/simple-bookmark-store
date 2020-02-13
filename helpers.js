@@ -9,9 +9,15 @@ function addEditUrl(baseUrl) {
     }
 }
 
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { return next(); }
+    res.redirect('/login')
+}
+
 const path = input => express.static(join(__dirname, input));
 
 module.exports = {
     addEditUrl,
+    ensureAuthenticated,
     path,
 };
