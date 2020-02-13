@@ -29,7 +29,7 @@ app.set('view engine', 'pug');
 
 // middleware
 app.use(helmet());
-app.use(session({ secret: 'cats' }));  // TODO: add key from environment
+app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
