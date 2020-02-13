@@ -15,12 +15,14 @@ exports.create = async function (req, res, next) {
         const $ = cheerio.load(response.data);
         const title = $('title').text() || 'Untitled';
         const description = $('meta[name="description"]').attr('content') || 'No description.';
+        const userId = req.user.id;
 
         const bookmark = new Bookmark({
             date: Date.now(),
             url,
             title,
             description,
+            userId,
         });
 
         await bookmark.save();
@@ -31,7 +33,9 @@ exports.create = async function (req, res, next) {
 }
 
 exports.readAll = async function (req, res, next) {
-    const bookmarks = await Bookmark.find().sort([['date', -1]]);
+    const bookmarks = await Bookmark
+        .find({ userId: req.user.id })
+        .sort([['date', -1]]);
 
     if (bookmarks) {
         bookmarks.map(addEditUrl(req.baseUrl));
