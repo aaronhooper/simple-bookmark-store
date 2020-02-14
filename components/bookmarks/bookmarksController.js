@@ -45,5 +45,12 @@ exports.readAll = async function(req, res, next) {
 exports.readOne = async function(req, res, next) {
   const id = req.params.id;
   const bookmark = await Bookmark.findById(id);
+  bookmark.deletionUrl = req.originalUrl + "/delete";
   res.render("bookmarks/edit", { bookmark });
+};
+
+exports.delete = async function(req, res, next) {
+  const id = req.params.id;
+  await Bookmark.deleteOne({ _id: id });
+  res.redirect("/bookmarks");
 };

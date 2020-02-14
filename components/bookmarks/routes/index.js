@@ -5,12 +5,14 @@ var router = express.Router();
 const bookmarks = require("../bookmarksController");
 const { ensureAuthenticated } = require("../../../helpers");
 
-router.all("/", ensureAuthenticated);
-
-router.post("/", bookmarks.create, function(req, res) {
+router.post("/", ensureAuthenticated, bookmarks.create, function(req, res) {
   res.redirect("/bookmarks");
 });
-router.get("/", bookmarks.readAll);
-router.get("/:id", bookmarks.readOne);
+router.get("/", ensureAuthenticated, bookmarks.readAll);
+router.get("/:id", ensureAuthenticated, bookmarks.readOne);
+
+router.get("/:id/delete", ensureAuthenticated, bookmarks.delete, (req, res) =>
+  res.redirect("/bookmarks")
+);
 
 module.exports = router;
